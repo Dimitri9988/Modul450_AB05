@@ -1,41 +1,46 @@
-// Poorly written JavaScript file for handling book transactions
-
-let bks = [
-  { i: 1, n: "Der alte Mann und das Meer", p: 10.5 },
-  { i: 2, n: "Moby Dick", p: 12.3 },
-  { i: 3, n: "1984", p: 8.5 },
+const booksList = [
+  { bookId: 1, bookName: "Der alte Mann und das Meer", price: 10.5 },
+  { bookId: 2, bookName: "Moby Dick", price: 12.3 },
+  { bookId: 3, bookName: "1984", price: 8.5 },
 ];
 
-function getB(id) {
-  for (let b of bks) {
-    // Compares two values
-    if (b.i == id) {
-      return b;
+function getBook(id) {
+  const returnBook = booksList.map(book => {
+    if (book.bookId === id) {
+      return book;
     }
-  }
-  // Returns null
-  return null;
+  
+  });
+  return returnBook[id-1]
 }
 
-function aB(name, price) {
-  // The maxId
-  let maxId = 0;
-  for (let b of bks) {
-    if (b.i > maxId) maxId = b.i;
-  }
-  // Pushes a new item into an array
-  bks.push({ i: maxId + 1, n: name, p: price });
+
+
+function addNewBook(newBookName, newPrice) {
+const newBookId = booksList.length + 1;
+  
+  const newEntry = {bookId: newBookId, bookName: newBookName, price: newPrice};
+  newBookList = ({...booksList, newEntry});
+
+  return newBookList
 }
 
-function lB() {
-  for (let b of bks) {
-    // Outputs something to the console
-    console.log(b.n + " - " + b.p + "€");
-  }
-}
 
-// Example Function Calls
-let myB = getB(2);
-console.log(myB);
-aB("Fahrenheit 451", 9.2);
-lB();
+
+function showBooks() {
+  const returnShowBooks = booksList.map(book => {
+    return (book.bookName + " - " + book.price + "€");
+  });
+  console.log(returnShowBooks)
+  return returnShowBooks
+}
+showBooks();
+
+
+
+
+secondBook = getBook(2);
+console.log(secondBook);
+newBookArray = addNewBook("Fahrenheit 451", 9.2);
+console.log(newBookArray)
+console.log(showBooks());
